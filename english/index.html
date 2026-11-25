@@ -78,6 +78,7 @@ h2 small{font-weight:500;font-size:14px;color:var(--soft);margin-left:6px}
 .speed{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--soft)}
 @media(max-width:600px){.t-body{padding:22px 18px}section{padding:18px}.top{padding-bottom:64px}}
 @media(prefers-reduced-motion:no-preference){.ticket{animation:in .5s ease-out}@keyframes in{from{transform:translateY(14px) rotate(-1deg);opacity:0}}}
+.mission #review{background:#2b1216;color:#fff;border-color:#2b1216}
 </style>
 </head>
 <body>
@@ -242,7 +243,7 @@ function render(){
  </section>
 
  <section class="mission"><h2>✏️ 오늘의 미션</h2><p style="margin:0">${esc(e.mission)}</p>
-  <textarea id="note" placeholder="여기에 영어로 한 문장 써보기">${esc(store.get("note-"+e.id,""))}</textarea></section>
+  <textarea id="note" placeholder="여기에 영어로 한 문장 써보기">${esc(store.get("note-"+e.id,""))}</textarea><div class="row"><button class="main" id="review">✉️ Claude한테 검토받기</button></div><p id="rvmsg" style="margin:8px 0 0;font-size:14px"></p></section>
 
  <section class="list"><h2>🎟 지난 대사 <small>${ENTRIES.length}장</small></h2>
   ${ENTRIES.map(x=>`<a href="#d${x.id.replace(/-/g,"")}" class="${x.id===e.id?"cur":""}"><span>${done[x.id]?"✔ ":""}${esc(x.quote)}</span><small>${esc(x.date)} · ${esc(x.show)}</small></a>`).join("")}
@@ -260,6 +261,12 @@ function bind(e){
  document.getElementById("done").onclick=()=>{if(done[e.id])delete done[e.id];else done[e.id]=1;store.set("done",done);render()};
  app.querySelectorAll(".hide").forEach(k=>k.onclick=()=>k.classList.remove("hide"));
  const note=document.getElementById("note");note.oninput=()=>store.set("note-"+e.id,note.value);
+ const rv=document.getElementById("review"),rm=document.getElementById("rvmsg");
+ rv.onclick=async()=>{const t=note.value.trim();if(!t){rm.textContent="먼저 위 칸에 문장을 써줘!";return}
+  const p=`영어 회화 공부 중이야. 오늘 카드: ${e.show}의 "${e.quote}"\n핵심 표현: ${e.expr.map(x=>x.en).join(", ")}\n미션: ${e.mission}\n\n내가 쓴 문장:\n${t}\n\n1) 문법·어색한 부분 고쳐줘 2) 원어민이면 어떻게 말할지 자연스러운 버전 2개 3) 오늘 표현을 제대로 썼는지 4) 발음 팁 한 줄. 한국어 반말로 짧고 솔직하게.`;
+  let copied=false;try{await navigator.clipboard.writeText(p);copied=true}catch(err){}
+  rm.textContent=copied?"Claude 창이 열려. 입력칸이 비어 있으면 붙여넣기(길게 눌러 붙여넣기)만 하고 보내면 돼.":"Claude 창이 열려. 내용이 안 채워져 있으면 문장을 직접 붙여넣어줘.";
+  const a=document.createElement("a");a.href="https://claude.ai/new?q="+encodeURIComponent(p);a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove()};
 }
 window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0)});
 render();
