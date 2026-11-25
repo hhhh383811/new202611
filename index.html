@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 대사</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Archivo+Black&family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#faf7f2,#141218);--ink:light-dark(#1d1a22,#f3eef8);--soft:light-dark(#6b6475,#b5adc0)}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Noto Sans KR",system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+main{max-width:860px;width:100%;margin:auto;padding:48px max(5vw,16px)}
+h1{font:900 clamp(32px,6vw,48px)/1.1 "Noto Sans KR";margin:0 0 8px;letter-spacing:-1px}
+p.sub{color:var(--soft);margin:0 0 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+a.card{display:block;text-decoration:none;color:#fff;border-radius:22px;padding:28px 26px 24px;min-height:220px;position:relative;overflow:hidden;box-shadow:0 18px 40px -22px rgba(0,0,0,.5);transition:transform .2s}
+a.card:hover{transform:translateY(-4px)}
+a.card:focus-visible{outline:3px solid #ffd23f;outline-offset:3px}
+.en{background:#9e1328;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 28px,transparent 28px 56px)}
+.zh{background:#173a9c;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:26px 26px}
+.big{font:400 40px/1 "Archivo Black",sans-serif;margin-bottom:18px}
+.zh .big{font:900 40px/1 "Noto Serif SC",serif}
+.t{font:900 22px/1.2 "Noto Sans KR";margin:0 0 6px}
+.d{opacity:.85;font-size:15px;margin:0}
+.go{position:absolute;right:22px;bottom:18px;font-weight:700;font-size:14px;background:rgba(255,255,255,.18);padding:6px 12px;border-radius:99px}
+footer{text-align:center;color:var(--soft);font-size:13px;padding:20px}
+@media(prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>오늘의 대사</h1>
+<p class="sub">매일 아침 드라마·영화 대사 한 줄로 외우는 회화. 날마다 새 카드가 올라와.</p>
+<div class="grid">
+ <a class="card en" href="english/"><div class="big">“Hi.”</div><p class="t">영어</p><p class="d">미드 · 디즈니 · 마블 대사로 실전 회화</p><span class="go">열기 →</span></a>
+ <a class="card zh" href="chinese/"><div class="big">你好</div><p class="t">중국어</p><p class="d">중국 청춘물 대사로 원어민 구어 (HSK 6급+)</p><span class="go">열기 →</span></a>
+</div>
+</main>
+<footer>매일 아침 자동 업데이트</footer>
+</body>
+</html>

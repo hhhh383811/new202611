@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 중드 중국어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+SC:wght@600;900&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: 짝꿍이 쉬는 시간에 건네주는 쪽지. 가볍고 설레게, 글자는 크게.
+IDEA: 중국 고등학교 공책. 원고지(田字格) 칸에 오늘의 대사를 한 글자씩 써 넣은 페이지.
+PICTURE: 田字格 칸에 박힌 큰 한자 대사, 그 아래 성조 색깔 병음.
+COLOUR and TYPE: 교복 블루 + 흰 공책 + 체리 핑크 포인트. 한자는 Noto Serif SC, 한글은 Noto Sans KR.
+LAYOUT: 한 열, 폰 우선. 공책 → 표현 → 단어 → 예문 → 미션 → 지난 대사.
+*/
+:root{color-scheme:light dark;
+--bg:light-dark(#eaf1ff,#0b1630);--paper:light-dark(#ffffff,#13213f);--ink:light-dark(#14213d,#e9efff);
+--soft:light-dark(#5b6b8c,#a8b6d6);--blue:light-dark(#2457d6,#6f9bff);--deep:light-dark(#173a9c,#0f2a75);
+--pop:light-dark(#ff5d7a,#ff7d95);--line:light-dark(#d5e0fa,#2b3c66);--chip:light-dark(#eef3ff,#1b2c52);
+--t1:light-dark(#e0263f,#ff6b7d);--t2:light-dark(#e07b00,#ffb347);--t3:light-dark(#1f9d55,#55d68f);--t4:light-dark(#2457d6,#7fa6ff);--t0:light-dark(#8a93a8,#8a93a8)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Noto Sans KR",system-ui,sans-serif;overflow-x:clip}
+.top{background:var(--deep);color:#fff;padding:18px max(5vw,16px) 70px;
+ background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px}
+.top .in{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font:900 20px/1.1 "Noto Sans KR";letter-spacing:-.5px}.brand b{color:#ffd1da}
+.streak{font-size:14px;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:99px}
+main{max-width:720px;margin:-52px auto 0;padding:0 max(4vw,14px) 60px}
+.note{background:var(--paper);border-radius:22px;box-shadow:0 18px 40px -18px rgba(20,40,120,.45);overflow:hidden}
+.n-head{background:var(--blue);color:#fff;padding:14px 22px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:14px}
+.n-head strong{font-size:16px}
+.n-body{padding:24px 22px 22px}
+.grid{display:flex;flex-wrap:wrap;gap:0;margin:0 0 14px}
+.cell{width:clamp(40px,10vw,58px);aspect-ratio:1;display:grid;place-items:center;font:900 clamp(26px,6.6vw,38px)/1 "Noto Serif SC",serif;
+ border:1.5px solid var(--pop);margin:-0.75px;position:relative;
+ background:linear-gradient(var(--line),var(--line)) center/1px 100% no-repeat,linear-gradient(var(--line),var(--line)) center/100% 1px no-repeat}
+.cell.p{border-color:transparent;background:none;width:clamp(18px,4vw,26px)}
+.py{font:600 19px/1.5 "Noto Sans KR";margin:0 0 6px;display:flex;flex-wrap:wrap;column-gap:7px}
+.s1{color:var(--t1)}.s2{color:var(--t2)}.s3{color:var(--t3)}.s4{color:var(--t4)}.s0{color:var(--t0)}
+.ko{font:400 20px/1.5 "Gowun Dodum",sans-serif;color:var(--soft);margin:0}
+.hide{filter:blur(7px);cursor:pointer;user-select:none}
+.legend{font-size:13px;color:var(--soft);display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.legend b{font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+button{font:500 15px "Noto Sans KR";min-height:44px;padding:0 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--blue)}
+button:focus-visible{outline:3px solid var(--pop);outline-offset:2px}
+button.main{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+button.on{background:var(--pop);color:#fff;border-color:var(--pop)}
+.say{background:var(--chip);border-radius:14px;padding:12px 14px;margin-top:14px;font-size:15px}
+.say b{color:var(--blue)}
+.scene{font-size:16px;color:var(--soft);margin:0;border-top:2px dashed var(--line);padding-top:16px}
+section{background:var(--paper);border-radius:18px;padding:22px;margin-top:16px}
+h2{font:900 22px/1.2 "Noto Sans KR";margin:0 0 14px;letter-spacing:-.3px}
+h2 small{font-weight:500;font-size:14px;color:var(--soft);margin-left:6px}
+.card{border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:10px}
+.zh{font:900 22px/1.4 "Noto Serif SC",serif;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.zh span{flex:1}
+.card .py{font-size:16px;margin:4px 0 0}
+.card p{margin:6px 0 0;font-size:15.5px}
+.tag{font-size:13px;color:var(--pop);font-weight:700}
+.hsk{font:700 12px "Noto Sans KR";background:var(--chip);color:var(--blue);padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.play{min-height:40px;min-width:40px;padding:0;border-radius:50%;flex:none;display:grid;place-items:center}
+.play svg{width:16px;height:16px;fill:currentColor}
+.pr{font-size:14.5px;color:var(--soft);margin-top:6px}
+.pr i{font-style:normal;background:var(--chip);padding:1px 7px;border-radius:6px;color:var(--ink)}
+.mission{background:var(--pop);color:#fff}
+.mission textarea{width:100%;min-height:90px;font:16px/1.5 "Noto Sans KR";padding:12px;border-radius:12px;border:0;margin-top:8px;resize:vertical;background:#fff5f7;color:#14213d}
+.list a{display:flex;justify-content:space-between;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.list a:last-child{border:0}.list a.cur{color:var(--blue);font-weight:700}
+.list span{font-family:"Noto Serif SC",serif}
+.list small{color:var(--soft);white-space:nowrap}
+.foot{font-size:13px;color:var(--soft);text-align:center;margin-top:22px;padding:0 16px}
+@media(max-width:600px){.n-body{padding:22px 16px}section{padding:18px}.list a{flex-direction:column;gap:2px}}
+@media(prefers-reduced-motion:no-preference){.cell{animation:pop .4s ease-out backwards}@keyframes pop{from{transform:scale(.6);opacity:0}}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><div class="brand">오늘의 <b>중드</b> 중국어</div><div class="streak" id="streak"></div></div></header>
+<main id="app"></main>
+<p class="foot"><a href="../" style="color:inherit">← 처음으로</a> · 매일 청춘물 대사 한 장씩 추가돼 · 병음 색깔은 성조 · 🔊는 기기 중국어 음성(TTS)</p>
+<script>
+{
+const ENTRIES = [
+/*ENTRIES-START*/
+{
+ id:"2026-11-25-test2", date:"11월 25일 테스트 2", show:"难哄 (난훙/더 퍼스트 프로스트)", where:"후반부 · 빗속 구조 후 포옹 장면", who:"쌍옌(桑延)이 위험에서 구해낸 원이판(温以凡)을 끌어안고",
+ quote:"这么多年，我还是只喜欢你。", py:"Zhè me duō nián, wǒ hái shì zhǐ xǐ huan nǐ.",
+ ko:"이렇게 오랜 세월이 지났는데도, 난 여전히 너만 좋아해.",
+ sayKo:"쩌머 뚜오 니엔, 워 하이스 <b>즈</b> 시환 니",
+ sayTip:"这么의 么는 경성이라 'zhè me'가 거의 '쩌머' 한 박자. 还是는 빨리 말하면 是가 약화돼 'hái shi'로 흘러가. 只喜欢你는 3성+3성+경성+3성 조합이라 只가 2성처럼 올라가고(zhí xǐ), 喜欢의 欢은 경성, 你는 반3성으로 낮게 깔면서 끝내. 강세는 只에 꾹! 거기가 '너만'이니까. 我还是 뒤에서 반 박자 쉬면 '참다가 터지는' 고백 느낌이 살아.",
+ scene:"고등학교 때 원이판한테 차였던 쌍옌이 9년 만에 다시 만나서 내내 독설과 츤데레로 버티다가, 원이판이 일하다 위험에 처하자 빗속에서 구해내고 끌어안으며 결국 털어놓는 고백이야. 평소 입만 열면 비꼬던 남자가 '아직도 너야' 한마디로 무너지는 게 포인트. 방영 전부터 밈이 됐던 대사라 댓글창이 난리 났어.",
+ expr:[
+  {zh:"说到底/到头来，还是…", py:"shuō dào dǐ dào tóu lái hái shì", ko:"결국엔, 돌고 돌아 또 ~", note:"구어 귀결 구조. 대사의 '这么多年，我还是…'처럼 시간·노력을 다 거쳤는데도 결론은 그대로라는 체념+진심을 담아. 到头来는 '애썼는데 결국'이라 허탈함이 크고, 说到底는 '따지고 보면 본질은'이라 논리적 정리 느낌, 终究는 문어적이고 운명론적이야. 예: 到头来我还是输给了你(결국 또 너한테 졌네). 说到底，你就是不想去嘛(따지고 보면 그냥 가기 싫은 거잖아). 뒤에 嘛가 붙으면 '다 알거든?' 하는 찌르기가 돼.", tip:"到头来의 来는 경성 lai로 흘리고, 头를 살짝 끌어야 '돌고 돌아서~' 하는 한탄 톤이 나. 说到底는 底에서 뚝 끊어."},
+  {zh:"情有独钟", py:"qíng yǒu dú zhōng", ko:"오직 하나에만 마음이 꽂히다", note:"성어. '只喜欢你'의 성어 버전. 사람뿐 아니라 취향에도 잘 써: 我对火锅情有独钟(나 훠궈엔 진심이야). 一往情深은 한결같이 깊은 사랑이라 무게가 더 있고, 情有独钟은 '여럿 중에 딱 그것만'이라는 선택의 뉘앙스가 핵심. 실제 대화에선 진지 고백보단 반쯤 장난으로 '我就对你情有独钟啊'처럼 써서 오글거림을 덜어.", tip:"独는 dú 2성, 钟은 1성 높게 쭉. 有는 3성인데 뒤가 2성이라 반3성으로 낮게만 찍고 넘어가."},
+  {zh:"白月光", py:"bái yuè guāng", ko:"(유행어) 잊지 못한 첫사랑, 마음속 이상형", note:"장아이링(张爱玲) 소설 《红玫瑰与白玫瑰》의 '白玫瑰是床前明月光'에서 퍼진 말. 닿지 못해서 더 빛나는 사람이 白月光, 곁에 있는데 애증인 사람은 朱砂痣(가슴의 붉은 점)라고 짝으로 써. 쌍옌한테 원이판은 9년짜리 白月光인 셈. 썸 단계에서 '你是我的白月光'은 오케이지만, 사귀는 애인한테 쓰면 '그럼 난 아직 못 가진 사람이냐'는 역공 받을 수 있고, 전 애인 얘기 중에 쓰면 현 애인 앞에서 대참사.", tip:"白는 2성 bái, 月는 4성 yuè로 확 떨어졌다가 光 1성으로 다시 높게. 'yue'를 '유에'가 아니라 입술 동그랗게 '위에'로."}
+ ],
+ words:[
+  {zh:"执念", py:"zhí niàn", ko:"집착, 놓지 못하는 마음", hsk:"구어", ex:"九年了还放不下，这已经不是喜欢，是执念了吧。", exPy:"Jiǔ nián le hái fàng bu xià, zhè yǐ jīng bú shì xǐ huan, shì zhí niàn le ba.", exKo:"9년째 못 놓는 거면 이건 좋아하는 게 아니라 집착 아냐?", tip:"执着(zhí zhuó)는 끈기라는 긍정 뜻도 있지만, 执念은 마음속에 박힌 생각이라 더 감성적이고 살짝 짠한 느낌. 放不下의 不는 가운데라 경성 bu."},
+  {zh:"释怀", py:"shì huái", ko:"(마음의 응어리를) 내려놓다, 털어버리다", hsk:"HSK 7-9", ex:"分手都三年了，你真的释怀了吗？", exPy:"Fēn shǒu dōu sān nián le, nǐ zhēn de shì huái le ma?", exKo:"헤어진 지 3년인데, 너 진짜 다 털어낸 거 맞아?", tip:"放下는 일상어로 넓게 쓰고, 释怀는 감정적 상처를 풀어낸다는 문어 느낌이라 일기·SNS 감성글 단골. 주로 难以释怀·终于释怀了 꼴로 나와."},
+  {zh:"嘴硬", py:"zuǐ yìng", ko:"말로만 센 척하다, 끝까지 안 지는 척", hsk:"구어", ex:"你就嘴硬吧，明明在等她消息。", exPy:"Nǐ jiù zuǐ yìng ba, míng míng zài děng tā xiāo xi.", exKo:"계속 센 척해 봐, 걔 연락 기다리는 거 다 티 나거든.", tip:"嘴硬心软(말은 세도 마음은 약함)이 츤데레 쌍옌 그 자체. 死鸭子嘴硬(죽은 오리 부리만 딱딱하다)은 '끝까지 인정 안 함'을 비꼬는 속담. 嘴는 3성 zuǐ, '쭈이' 아니고 입 내밀고 '쮀이'."}
+ ],
+ use:[
+  {tag:"비꼬기", zh:"说到底，你不就是想让我先低头嘛，做梦。", py:"Shuō dào dǐ, nǐ bú jiù shì xiǎng ràng wǒ xiān dī tóu ma, zuò mèng.", ko:"따지고 보면 결국 나보고 먼저 숙이라는 거잖아? 꿈 깨.", tip:"不就是…嘛는 '그거 아냐?'라는 반어 찌르기. 不는 就(4성) 앞이라 bú. 做梦은 짧게 툭 던져야 얄미움 만렙."},
+  {tag:"썸 탈 때", zh:"别人再好有什么用，我到头来还是只想跟你聊天。", py:"Bié rén zài hǎo yǒu shén me yòng, wǒ dào tóu lái hái shì zhǐ xiǎng gēn nǐ liáo tiān.", ko:"딴 사람이 아무리 괜찮아도 무슨 소용이야, 결국 난 너랑만 얘기하고 싶은걸.", tip:"再好는 '아무리 좋아도' 양보. 只想은 3+3이라 zhí xiǎng. 什么는 회화에서 shén me가 '션머'로 뭉개져."},
+  {tag:"회사 일상", zh:"方案改了八版，到头来老板还是选了第一版，我真的会谢。", py:"Fāng àn gǎi le bā bǎn, dào tóu lái lǎo bǎn hái shì xuǎn le dì yī bǎn, wǒ zhēn de huì xiè.", ko:"기획안 8번 고쳤는데 결국 사장님이 1안 고름. 와 진짜 감사하네요(어이없음).", tip:"我真的会谢는 '고맙다'가 아니라 어이없을 때 쓰는 유행어. 谢를 길게 빼면 비꼼 강도 상승. 老板은 3+3이라 láo bǎn. 第一의 一는 서수라 변조 없이 yī."}
+ ],
+ mission:"오래 연락 안 한 친구나 썸 상대한테 '그래도 결국 너밖에 없다'는 위챗을 써보자. 到头来…还是… 구조에 情有独钟이나 白月光 중 하나를 넣되, 너무 진지하면 오글거리니까 嘛나 我真的会谢 같은 장난 한 스푼 섞어서. 다 쓰면 到头来를 说到底로 바꿨을 때 뉘앙스가 어떻게 바뀌는지도 한 줄로 적어봐."
+},
+{
+ id:"2026-11-25-test", date:"11월 25일 테스트", show:"偷偷藏不住 (투투장부주/살며시 감출 수 없어)", where:"12화 · 술 취한 귀갓길 차 안", who:"상즈(桑稚)가 취해서 돤자쉬(段嘉许) 본인한테 그를 흉보며",
+ quote:"他很好，对我也很好，可是他对谁都很好，中央空调。", py:"Tā hěn hǎo, duì wǒ yě hěn hǎo, kě shì tā duì shéi dōu hěn hǎo, zhōng yāng kōng tiáo.",
+ ko:"그 사람 좋아. 나한테도 잘해줘. 근데 누구한테나 다 잘해. 중앙냉난방이야.",
+ sayKo:"타 헌 하오, 뚜이 워 예 헌 하오, 커스 타 뚜이 <b>쉐이</b> 떠우 헌 하오, <b>쫑양 콩탸오</b>",
+ sayTip:"也很好는 3성 세 개 연속이라 실제론 yé hén hǎo처럼 앞 둘이 올라가. 취한 대사라 可是의 是가 거의 'kě shi'로 뭉개지고, 谁에 꾹 힘 줬다가 中央空调는 한숨 쉬듯 툭 던져야 서운함이 살아. 谁는 회화에선 shuí보다 shéi가 압도적.",
+ scene:"상즈가 술에 취해 차 안에서 '좋아하는 사람이 있다'고 털어놓는 장면이야. 근데 그 '그 사람'이 바로 옆에 있는 돤자쉬라는 게 포인트. 본인 앞에서 본인 흉을 보는 셈이라 돤자쉬 표정이 볼만해. 고백인 듯 투정인 듯한 명장면.",
+ expr:[
+  {zh:"A是A，可是/就是…", py:"A shì A, kě shì jiù shì", ko:"좋긴 좋은데… / ~하긴 한데 문제는…", note:"구어 양보-반전 구조. 대사처럼 '他很好…可是…'로 일단 인정하고 뒤에서 진짜 불만을 꺼내는 게 중국어 투정의 정석이야. 더 구어적으로 굳은 꼴이 好是好，就是太贵了(좋긴 좋은데 너무 비싸). 可是는 반전이 크고 감정적, 就是는 '딱 하나 걸리는 게'라는 아쉬움, 不过는 담담하고 부드러워. 예: 帅是帅，就是太花了(잘생기긴 했는데 너무 바람기 있어).", tip:"앞 A는 길게, 是는 거의 'shi' 경성으로 흘리고, 就是에서 톤을 살짝 내려야 '근데 말이지…' 느낌이 나."},
+  {zh:"来者不拒", py:"lái zhě bú jù", ko:"오는 사람 안 막는다, 누구든 다 받아줌", note:"성어. 원래는 《孟子》의 '往者不追，来者不拒'에서 온 너그러운 말인데, 요즘 연애 맥락에선 '들이대는 사람 다 받아주는 어장관리'라는 비꼼으로 더 많이 써. 中央空调랑 찰떡. 예: 他对追他的女生一向来者不拒(걔는 자기 좋다는 여자를 늘 다 받아줘). 술 권할 때 '来者不拒' 하면 '주는 대로 다 마신다'는 호기로운 뜻도 돼.", tip:"不拒의 不는 4성 앞이라 bú로 변조. 者는 zhě, '저'보다 혀를 말아 '져'에 가깝게."},
+  {zh:"中央空调", py:"zhōng yāng kōng tiáo", ko:"(인터넷) 누구에게나 따뜻한 오지랖 남자, 어장 중앙냉난방", note:"유행어. 중앙냉난방이 건물 전체를 골고루 데우듯 모든 이성한테 다정한 사람. 나한테만 따뜻한 건 暖男, 나한테만 차갑고 남들한텐 따뜻하면 中央空调 소리 들어. 의도적이면 渣男, 中央空调는 본인은 그냥 착한 거라 우기는 뉘앙스가 있어. 반대말 드립으로 '我只做你的私人暖宝宝'(난 너만의 핫팩)도 있어. 진지한 회의에서 '공조 시스템' 얘기할 때 이 뜻으로 오해하면 웃겨.", tip:"调는 다음자! 여기선 tiáo(조절), 音调·调查에선 diào. '콩댜오'로 읽으면 바로 티 나."}
+ ],
+ words:[
+  {zh:"暧昧", py:"ài mèi", ko:"썸, 애매한 관계", hsk:"6급", ex:"你俩都暧昧半年了，到底谁先开口？", exPy:"Nǐ liǎ dōu ài mèi bàn nián le, dào dǐ shéi xiān kāi kǒu?", exKo:"너네 썸 탄 지 반년인데, 대체 누가 먼저 말할 거야?", tip:"모호하다는 뜻의 模糊는 사물·기억, 暧昧는 관계·태도. 원래 '떳떳하지 못하다'는 뜻도 있어서 关系暧昧는 불륜 뉘앙스가 될 수도 있으니 조심."},
+  {zh:"撩", py:"liáo", ko:"(이성을) 꼬시다, 설레게 하다", hsk:"유행어", ex:"他随便一句话就把我撩得睡不着。", exPy:"Tā suí biàn yí jù huà jiù bǎ wǒ liáo de shuì bu zháo.", exKo:"걔가 툭 던진 한마디에 설레서 잠이 안 와.", tip:"撩妹·撩汉이 기본형. 2성 liáo가 '꼬시다'고, 3성 liǎo는 撩起裙子처럼 '걷어올리다'. 勾引은 노골적이라 부정적, 撩는 장난스럽고 가벼워."},
+  {zh:"分寸", py:"fēn cun", ko:"선, 적정선, 분별", hsk:"HSK 7-9", ex:"对谁都好可以，但跟异性得有点分寸感吧。", exPy:"Duì shéi dōu hǎo kě yǐ, dàn gēn yì xìng děi yǒu diǎn fēn cun gǎn ba.", exKo:"누구한테 잘해주는 건 좋은데, 이성이랑은 선 좀 지켜야지.", tip:"寸은 회화에서 경성 fēn cun. 要有分寸·没分寸이 기본, SNS에선 分寸感이 '연애 선 지키는 감각'으로 자주 나와. 界限은 경계선 자체, 分寸은 그걸 지키는 감각."}
+ ],
+ use:[
+  {tag:"비꼬기", zh:"哟，大忙人还记得回我消息啊？你这中央空调够累的吧。", py:"Yō, dà máng rén hái jì de huí wǒ xiāo xi a? Nǐ zhè zhōng yāng kōng tiáo gòu lèi de ba.", ko:"어머, 바쁘신 분이 내 답장도 해주시네? 중앙냉난방 돌리느라 피곤하겠다.", tip:"消息의 息는 경성 xi. 够…的吧는 '꽤나 ~하겠네'라는 얄미운 공감. 哟를 올려 끌면 비꼼 100%."},
+  {tag:"썸 탈 때", zh:"好是好，就是你对谁都这么好，我有点吃醋。", py:"Hǎo shì hǎo, jiù shì nǐ duì shéi dōu zhè me hǎo, wǒ yǒu diǎn chī cù.", ko:"좋긴 좋은데, 네가 누구한테나 이렇게 잘해주니까 좀 질투 나.", tip:"好是好는 3성이 是로 끊겨서 변조 없이 hǎo. 有点는 3+3이라 yóu diǎn. 吃醋의 醋는 끝을 짧게 툭."},
+  {tag:"회사 동료 얘기", zh:"新来的组长人是不错，就是谁找他都来者不拒，最后全是他加班。", py:"Xīn lái de zǔ zhǎng rén shì bú cuò, jiù shì shéi zhǎo tā dōu lái zhě bú jù, zuì hòu quán shì tā jiā bān.", ko:"새 팀장님 사람은 좋은데, 누가 부탁하든 다 받아줘서 결국 야근은 혼자 다 해.", tip:"组长은 3+3이라 zú zhǎng으로 들려. 不错·不拒 둘 다 4성 앞 bú. 人是不错처럼 주어 뒤 是 강조도 구어 단골."}
+ ],
+ mission:"썸 상대한테 '좋긴 좋은데 서운한 점'을 위챗으로 보내보자. A是A，就是… 구조에 中央空调나 来者不拒 중 하나를 넣어서, 너무 따지는 말투 말고 살짝 삐진 귀여운 톤으로 써봐. 다 쓰면 不过로 바꿨을 때 뉘앙스가 어떻게 달라지는지도 한 줄로 적어봐."
+},
+{
+ id:"2026-11-25", date:"11월 25일 수", show:"最好的我们 (최호적아문)", where:"1화 · 고1 반 배정 날", who:"위화이(余淮)가 겅겅(耿耿)을 소개하며",
+ quote:"我叫余淮，前面这人叫耿耿。", py:"Wǒ jiào Yú Huái, qián miàn zhè rén jiào Gěng Gěng.",
+ ko:"난 위화이, 내 앞에 얘는 겅겅이야.",
+ sayKo:"워 <b>쨔오</b> 위 화이, 치엔미엔 <b>쩌</b> 런 쨔오 겅겅",
+ sayTip:"실제 회화에선 前面의 面을 경성으로 흘려서 'qián mian'. 这人은 북방 구어에서 'zhèi rén'으로도 들려. 耿耿은 3성 연속이라 앞이 2성 géng으로 바뀌어.",
+ scene:"반 배정표에 이름이 나란히 붙은 걸 보고 위화이가 웃으면서 하는 말이야. 둘 이름을 붙이면 '耿耿于怀(계속 마음에 걸리다)'가 된다는 드립이 바로 이어지고, 결국 둘은 짝꿍이 돼. 드라마 제목급 명장면.",
+ expr:[
+  {zh:"对…耿耿于怀", py:"duì gěng gěng yú huái", ko:"~이 계속 마음에 응어리로 남다", note:"성어. 耿耿은 원래 걱정으로 잠 못 드는 모양이라 《诗经》에도 나와. 핵심은 '불쾌함·억울함'이 남는다는 것. 念念不忘은 좋은 걸 그리워하는 거라 방향이 반대야. 至今仍对那件事耿耿于怀(지금까지도 그 일이 마음에 걸려)처럼 至今, 一直랑 잘 붙어.", tip:"3성 연속 변조로 géng gěng. 빠르게 말하면 于가 짧아져서 '겅겅위화이'가 한 덩어리."},
+  {zh:"你这人…", py:"nǐ zhè rén", ko:"너는 사람이 왜 그래 / 너 진짜…", note:"구어 어기 포인트. 你这人 + 평가로 '네 성격 자체가 문제'라는 투덜거림이 돼. 你这人真是的(너 진짜 못 말려), 你这人怎么这样啊(사람이 어떻게 그래?). 친한 사이면 장난, 싸울 땐 꽤 세. 这人 혼자 쓰면 제3자를 살짝 흉보는 맛(这人吧, 嘴硬心软).", tip:"真是的의 的는 경성으로 가볍게 끝내야 투덜대는 느낌이 살아. 是도 거의 약화돼서 'zhēn shi de'."},
+  {zh:"嗑CP / 嗑到了", py:"kè CP kè dào le", ko:"커플 케미에 과몰입하다 / (설렘이) 치였다", note:"유행어. 해바라기씨 까먹듯(嗑瓜子) 커플을 계속 '먹는다'는 데서 나왔어. 이 장면 같은 첫 만남 드립에 댓글창이 '嗑到了！'로 도배돼. 실제 연인한테 직접 쓰면 어색하고, 남의 커플 보며 쓰는 말.", tip:"嗑는 kè 4성. 口 변이 붙어서 '盖'로 읽으면 틀려. CP는 그냥 '씨피'로 읽어."}
+ ],
+ words:[
+  {zh:"冤家", py:"yuān jia", ko:"(애증의) 앙숙, 티격태격하다 엮이는 사이", hsk:"구어", ex:"他俩真是一对欢喜冤家。", exPy:"Tā liǎ zhēn shì yí duì huān xǐ yuān jia.", exKo:"걔네 둘 진짜 티격태격 커플이야.", tip:"仇人은 진짜 원수, 冤家는 미운데 결국 엮이는 사이. 家는 경성 jia. 一对의 一는 4성 앞이라 yí."},
+  {zh:"较劲", py:"jiào jìn", ko:"기싸움하다, 괜히 용쓰다", hsk:"구어", ex:"你跟我较什么劲啊？", exPy:"Nǐ gēn wǒ jiào shén me jìn a?", exKo:"나랑 뭘 그렇게 기싸움해?", tip:"이합사라 가운데 什么를 끼워 较什么劲. 劲는 북방에선 儿化해서 jìnr. 刚劲에선 jìng으로 읽는 다음자니까 조심."},
+  {zh:"默契", py:"mò qì", ko:"호흡, 손발, 케미", hsk:"6급", ex:"我们俩连这都想到一块儿去了，太有默契了吧。", exPy:"Wǒ men liǎ lián zhè dōu xiǎng dào yí kuàir qù le, tài yǒu mò qì le ba.", exKo:"이것까지 똑같이 생각하다니, 우리 호흡 미쳤다.", tip:"契는 qì. 'qiè'로 잘못 읽기 쉬워. 一块儿은 儿化 kuàir이고, 남방에선 一起로 많이 바꿔 말해."}
+ ],
+ use:[
+  {tag:"비꼬기", zh:"哟，你还记得我叫什么呢？我真是受宠若惊。", py:"Yō, nǐ hái jì de wǒ jiào shén me ne? Wǒ zhēn shì shòu chǒng ruò jīng.", ko:"어머, 내 이름은 기억하시네? 황송해서 몸 둘 바를 모르겠다.", tip:"哟를 길게 끌어 올려야 비꼬는 맛이 나. 记得의 得는 경성 de. 受宠若惊을 정색하고 또박또박 말하면 더 얄미워."},
+  {tag:"썸 탈 때", zh:"我们名字连起来都这么配，你说这算不算缘分？", py:"Wǒ men míng zi lián qǐ lai dōu zhè me pèi, nǐ shuō zhè suàn bu suàn yuán fèn?", ko:"우리 이름 붙이니까 이렇게 잘 어울리는데, 이거 인연 아냐?", tip:"连起来의 来는 방향보어라 경성 lai. 算不算의 不도 가운데서 경성 bu로 흘려. 名字의 字도 경성."},
+  {tag:"친구가 아직 꿍해 있을 때", zh:"那事儿都过去多久了，你至于这么耿耿于怀吗？", py:"Nà shìr dōu guò qu duō jiǔ le, nǐ zhì yú zhè me gěng gěng yú huái ma?", ko:"그게 언제 적 일인데, 그렇게까지 마음에 담아둘 일이야?", tip:"至于…吗는 '그럴 것까지 있어?'라는 반어. 事儿은 북방식 儿化 shìr, 남방은 那件事. 过去의 去는 경성 qu."}
+ ],
+ mission:"내 이름이나 친구 이름으로 해음 드립 하나 만들어서 위챗 메시지처럼 써보기(耿耿+余淮=耿耿于怀처럼). 그리고 '你这人…'으로 친구한테 장난스럽게 투덜대는 문장도 하나 아래 칸에 써봐."
+},
+/*ENTRIES-END*/
+];
+
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store={get(k,d){try{const v=localStorage.getItem("zh-"+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem("zh-"+k,JSON.stringify(v))}catch(e){}}};
+const ico='<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg>';
+const playBtn=t=>`<button class="play" data-say="${esc(t)}" aria-label="듣기">${ico}</button>`;
+const T={1:"āēīōūǖĀĒĪŌŪ",2:"áéíóúǘÁÉÍÓÚ",3:"ǎěǐǒǔǚǍĚǏǑǓ",4:"àèìòùǜÀÈÌÒÙ"};
+const tone=w=>{for(const k in T)for(const c of T[k])if(w.includes(c))return k;return 0};
+const pinyin=p=>String(p).split(/\s+/).filter(Boolean).map(w=>`<span class="s${tone(w)}">${esc(w)}</span>`).join("");
+const cells=q=>[...q].map((c,i)=>`<span class="cell${/[，。！？、,.!?…]/.test(c)?" p":""}" style="animation-delay:${i*40}ms">${esc(c)}</span>`).join("");
+let rate=store.get("rate",0.85), hideKo=store.get("hideKo",false), hidePy=store.get("hidePy",false);
+const done=store.get("done",{});
+
+function speak(t){
+ try{const s=window.speechSynthesis;s.cancel();const u=new SpeechSynthesisUtterance(t.replace(/○○/g,"小明"));u.lang="zh-CN";u.rate=rate;
+  const v=s.getVoices().find(v=>/zh[-_]CN/i.test(v.lang));if(v)u.voice=v;s.speak(u)}catch(e){}
+}
+
+function render(){
+ const id=location.hash.slice(1);
+ const e=ENTRIES.find(x=>"d"+x.id.replace(/[^0-9a-z]/gi,"")===id)||ENTRIES[0];
+ const pyC=hidePy?" hide":"", koC=hideKo?" hide":"";
+ document.getElementById("streak").textContent=`외운 대사 ${Object.keys(done).length} / ${ENTRIES.length}`;
+ document.getElementById("app").innerHTML=`
+ <article class="note">
+  <div class="n-head"><span><strong>${esc(e.show)}</strong> · ${esc(e.where)}</span><span>${esc(e.date)}</span></div>
+  <div class="n-body">
+   <div class="grid" lang="zh-CN">${cells(e.quote)}</div>
+   <p class="py${pyC}">${pinyin(e.py)}</p>
+   <p class="ko${koC}">${esc(e.ko)} <span style="font-size:15px">— ${esc(e.who)}</span></p>
+   <div class="legend"><span><b class="s1">1성</b> 높게 쭉</span><span><b class="s2">2성</b> 올리기</span><span><b class="s3">3성</b> 내렸다 올리기</span><span><b class="s4">4성</b> 뚝 떨어뜨리기</span><span><b class="s0">경성</b> 가볍게</span></div>
+   <div class="say">🗣 ${e.sayKo}<br>${esc(e.sayTip)}</div>
+   <div class="row">
+    <button class="main" data-say="${esc(e.quote)}">🔊 듣기</button>
+    <button id="slow" class="${rate<0.75?"on":""}">🐢 천천히</button>
+    <button id="hpy" class="${hidePy?"on":""}">${hidePy?"병음 보이기":"병음 가리기"}</button>
+    <button id="hko" class="${hideKo?"on":""}">${hideKo?"해석 보이기":"해석 가리기"}</button>
+    <button id="done" class="${done[e.id]?"on":""}">${done[e.id]?"✔ 외웠어":"외웠으면 체크"}</button>
+   </div>
+  </div>
+  <div class="n-body" style="padding-top:0"><h2 style="font-size:17px;margin:0 0 6px;border-top:2px dashed var(--line);padding-top:16px">📌 어떤 장면이냐면</h2><p style="margin:0;color:var(--soft);font-size:16px">${esc(e.scene)}</p></div>
+ </article>
+
+ <section><h2>🔑 핵심 표현</h2>
+  ${e.expr.map(x=>`<div class="card"><div class="zh"><span>${esc(x.zh)} <span style="font:500 15px 'Noto Sans KR';color:var(--soft)">${esc(x.ko)}</span></span>${playBtn(x.zh)}</div>
+   <p class="py${pyC}">${pinyin(x.py)}</p><p>${esc(x.note)}</p><div class="pr">발음 <i>${pinyin(x.py)}</i> · ${esc(x.tip)}</div></div>`).join("")}
+ </section>
+
+ <section><h2>📚 알아둘 단어</h2>
+  ${e.words.map(x=>`<div class="card"><div class="zh"><span>${esc(x.zh)}<span class="hsk">${esc(x.hsk)}</span></span>${playBtn(x.ex)}</div>
+   <p class="py${pyC}">${pinyin(x.py)}</p><p><b style="color:var(--blue)">뜻</b> ${esc(x.ko)}</p>
+   <p style="font-family:'Noto Serif SC',serif;font-size:18px">${esc(x.ex)}</p><p class="py${pyC}">${pinyin(x.exPy)}</p><p class="${koC.trim()}" style="color:var(--soft)">${esc(x.exKo)}</p>
+   <div class="pr">🗣 ${esc(x.tip)}</div></div>`).join("")}
+ </section>
+
+ <section><h2>💬 이렇게 써먹어</h2>
+  ${e.use.map(x=>`<div class="card"><div class="tag">${esc(x.tag)}</div>
+   <div class="zh"><span>${esc(x.zh)}</span>${playBtn(x.zh)}</div><p class="py${pyC}">${pinyin(x.py)}</p>
+   <p class="${koC.trim()}" style="color:var(--soft)">${esc(x.ko)}</p><div class="pr">🗣 ${esc(x.tip)}</div></div>`).join("")}
+  <div class="row" style="align-items:center;font-size:14px;color:var(--soft)">속도 <button data-r="0.6" class="${rate==0.6?"on":""}">느리게</button><button data-r="0.85" class="${rate==0.85?"on":""}">보통</button><button data-r="1" class="${rate==1?"on":""}">원속도</button></div>
+ </section>
+
+ <section class="mission"><h2>✏️ 오늘의 미션</h2><p style="margin:0">${esc(e.mission)}</p>
+  <textarea id="note" placeholder="여기에 중국어로 한 문장 써보기">${esc(store.get("note-"+e.id,""))}</textarea></section>
+
+ <section class="list"><h2>📒 지난 대사 <small>${ENTRIES.length}장</small></h2>
+  ${ENTRIES.map(x=>`<a href="#d${x.id.replace(/[^0-9a-z]/gi,"")}" class="${x.id===e.id?"cur":""}"><span>${done[x.id]?"✔ ":""}${esc(x.quote)}</span><small>${esc(x.date)} · ${esc(x.show)}</small></a>`).join("")}
+ </section>`;
+ bind(e);
+}
+
+function bind(e){
+ const app=document.getElementById("app");
+ app.querySelectorAll("[data-say]").forEach(b=>b.onclick=()=>speak(b.dataset.say));
+ app.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{rate=+b.dataset.r;store.set("rate",rate);render()});
+ document.getElementById("slow").onclick=()=>{rate=rate<0.75?0.85:0.6;store.set("rate",rate);speak(e.quote);render()};
+ document.getElementById("hpy").onclick=()=>{hidePy=!hidePy;store.set("hidePy",hidePy);render()};
+ document.getElementById("hko").onclick=()=>{hideKo=!hideKo;store.set("hideKo",hideKo);render()};
+ document.getElementById("done").onclick=()=>{if(done[e.id])delete done[e.id];else done[e.id]=1;store.set("done",done);render()};
+ app.querySelectorAll(".hide").forEach(k=>k.onclick=()=>k.classList.remove("hide"));
+ const note=document.getElementById("note");note.oninput=()=>store.set("note-"+e.id,note.value);
+}
+window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0)});
+render();
+}
+</script>
+</body>
+</html>
