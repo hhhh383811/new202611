@@ -82,6 +82,30 @@ h2 small{font-weight:500;font-size:14px;color:var(--soft);margin-left:6px}
 const ENTRIES = [
 /*ENTRIES-START*/
 {
+ id:"2026-11-25-test3", date:"11월 25일 테스트 3", genre:"마블(MCU)",
+ show:"Captain America: The First Avenger", where:"극장 뒷골목 싸움 장면", who:"스티브 로저스 (깡패한테)",
+ quote:"I can do this all day.", ko:"나 이거 하루 종일도 할 수 있어.",
+ sayKo:"아이 컨 <span class='stress'>두</span> 디스 <span class='stress'>올</span> <span class='stress'>데</span>이",
+ sayTip:"can은 '캔' 말고 약하게 '컨'. 힘은 DO, ALL, DAY. this all은 s가 붙어서 '디쏠'처럼 이어져도 돼.",
+ scene:"혈청 맞기 전 비실이 스티브가 극장에서 전쟁 뉴스 떠드는 놈한테 조용히 하라고 했다가 뒷골목에서 줄줄이 얻어맞아. 쓰레기통 뚜껑 들고 또 일어나면서 하는 말. 결국 버키가 와서 구해줌.",
+ expr:[
+  {en:"I can do this all day", ko:"이거 끝까지 버틸 수 있어, 안 지쳐", note:"포기 안 한다는 근성 선언. 회의에서 밀당 길어질 때 농담으로 쓰면 딱.", say:"아이 컨 <span class='stress'>두</span> 디스 <span class='stress'>올</span> <span class='stress'>데</span>이", tip:"can은 '컨'으로 약하게 — 세게 '캔'하면 can't로 들릴 수 있어"},
+  {en:"all day", ko:"하루 종일, 언제까지고", note:"'I could eat this all day'처럼 '질리지 않는다'는 뜻으로도 많이 씀.", say:"<span class='stress'>올</span> <span class='stress'>데</span>이", tip:"all의 l은 혀끝 살짝 대고 '얼'에 가까운 '올'"},
+  {en:"keep getting back up", ko:"계속 다시 일어나다", note:"넘어져도 또 일어나는 사람 묘사할 때. 'He keeps getting back up.'", say:"<span class='stress'>킵</span> 게링 <span class='stress'>배</span> <span class='stress'>컵</span>", tip:"getting은 '게링', back up은 '배컵'으로 붙여"}
+ ],
+ words:[
+  {en:"stamina", ko:"체력, 지구력", ex:"Year-end closing takes a lot of stamina.", exKo:"연말 결산은 체력 엄청 들어.", say:"<span class='stress'>스태</span>미나 · <span class='stress'>이</span>어 엔드 <span class='stress'>클로</span>징 <span class='stress'>테</span>익스 얼<span class='stress'>랏</span> 어브 <span class='stress'>스태</span>미나", tip:"stamina는 첫 '스태'에 힘. a lot of는 '얼라러브'로 굴러도 돼"},
+  {en:"persistent", ko:"끈질긴, 집요한", ex:"Be persistent with the vendor about the missing invoice.", exKo:"빠진 인보이스는 거래처한테 끈질기게 요청해.", say:"퍼<span class='stress'>씨</span>스턴트 · 비 퍼<span class='stress'>씨</span>스턴트 위더 <span class='stress'>벤</span>더", tip:"가운데 '씨'에 힘. with the는 '위더'로 붙이고 끝 t는 거의 안 들려"},
+  {en:"back down", ko:"물러서다, 꼬리 내리다", ex:"He didn't back down even when the auditor pushed.", exKo:"감사인이 밀어붙여도 걔는 안 물러섰어.", say:"<span class='stress'>백</span> <span class='stress'>다</span>운 · 히 <span class='stress'>디</span>든 백 <span class='stress'>다</span>운", tip:"back의 k는 받침처럼 '백'. didn't는 t 삼켜서 '디든'"}
+ ],
+ use:[
+  {tag:"정산 대사(對査) 중", en:"Another mismatch? Fine. I can do this all day.", ko:"또 안 맞아? 그래. 나 이거 하루 종일도 해.", say:"어<span class='stress'>나</span>더 <span class='stress'>미</span>스매치? <span class='stress'>파</span>인. 아이 컨 <span class='stress'>두</span> 디스 <span class='stress'>올</span> <span class='stress'>데</span>이", tip:"mismatch는 앞 '미'에 힘. Fine은 짧고 단호하게"},
+  {tag:"친구랑 게임할 때", en:"You can keep trying, but I can do this all day.", ko:"계속 해봐, 근데 난 하루 종일도 할 수 있어.", say:"유 컨 <span class='stress'>킵</span> <span class='stress'>트</span>라잉, 버라이 컨 <span class='stress'>두</span> 디스 <span class='stress'>올</span> <span class='stress'>데</span>이", tip:"but I는 '버라이'로 이어. can은 두 번 다 '컨'"},
+  {tag:"운동할 때", en:"Ten more reps? I could do this all day.", ko:"열 개 더? 이거 하루 종일도 하겠다.", say:"<span class='stress'>텐</span> 모어 <span class='stress'>렙</span>스? 아이 쿠드 <span class='stress'>두</span> 디스 <span class='stress'>올</span> <span class='stress'>데</span>이", tip:"could do는 d가 겹쳐서 '쿠두'처럼 한 번만"}
+ ],
+ mission:"오늘 지겨운 반복 작업 하나 붙잡고 속으로 \"I can do this all day\" 외치기. 아래 칸에 'I can do ~ all day'로 내가 질리지 않고 할 수 있는 거 한 문장 써봐. (예: I can do Excel shortcuts all day.)"
+},
+{
  id:"2026-11-25-test-2", date:"11월 25일 테스트 2", genre:"디즈니·픽사",
  show:"Zootopia", where:"서장실 나와서 스카이트램 안", who:"닉 와일드 (주디한테)",
  quote:"Never let them see that they get to you.", ko:"네가 흔들리는 거, 절대 티 내지 마.",
